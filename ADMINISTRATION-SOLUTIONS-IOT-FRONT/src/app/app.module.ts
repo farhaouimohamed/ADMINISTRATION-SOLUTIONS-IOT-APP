@@ -10,12 +10,14 @@ import { RegisterComponent } from './register/register.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardServerComponent } from './board-server/board-server.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { UserListComponent } from './board-admin/user-list/user-list.component';
 import { UserFormComponent } from './board-admin/user-form/user-form.component';
 import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MultiSelectAllModule
+    MultiSelectAllModule,
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

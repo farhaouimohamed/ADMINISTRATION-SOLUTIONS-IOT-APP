@@ -1,5 +1,5 @@
 <div class="card my-5">
-  <a class="btn btn-primary" href="/add" role="button">Ajouter un utilisateur</a>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Ajouter un utilisateur</button>
 </div>
 <div class="card my-5">
     <h1 style="margin: auto;">Liste des utilisateurs</h1>
@@ -23,8 +23,10 @@
             <td>
               <span *ngFor="let role of user.roles">{{role.name}} / </span>
             </td>
-            <td><a class="btn btn-outline-secondary" href="#" role="button">Editer</a></td>
-            <td><a class="btn btn-outline-danger" href="#" role="button">Supprimer</a></td>
+            <td>
+              <button type="button" class="btn btn-outline-secondary" (click)="updateUser(user.id)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Editer</button>
+            </td>
+            <td><button type="button" class="btn btn-outline-danger" (click)="deleteUser(user.id)">Supprimer</button></td>
           </tr>
         </tbody>
       </table>

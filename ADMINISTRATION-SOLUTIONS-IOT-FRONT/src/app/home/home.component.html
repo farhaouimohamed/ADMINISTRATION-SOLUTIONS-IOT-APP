@@ -1,5 +1,34 @@
-<div class="container">
-    <header class="jumbotron">
-      <p>{{ content }}</p>
-    </header>
+<header>
+  <!-- This div is  intentionally blank. It creates the transparent black overlay over the video which you can modify in the CSS -->
+  <div class="overlay"></div>
+  <!-- The HTML5 video element that will create the background video on the header -->
+  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+    <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+  </video>
+
+  <!-- The header content -->
+  <div class="container h-100">
+    <div class="d-flex h-100 text-center align-items-center">
+      <div class="w-100 text-white">
+        <h1 class="display-3">Aministration des solutions IOT</h1>
+        <p class="lead mb-0">SOLUTIONS D’INTERNET DES OBJETS (IOT)</p>
+      </div>
+    </div>
   </div>
+</header>
+
+<!-- Page section example for content below the video header -->
+<section class="my-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-4 col-md-7">
+        <img src="../../assets/images/dash.jpg" style="max-width:100%;height:auto;"/>
+      </div>
+      <div class="col-8 col-md-5">
+        La gestion des appareils IoT est la capacité d'accéder, de diagnostiquer et de gérer à distance les fonctionnalités de vos appareils IoT déployés. Plusieurs facteurs clés illustrent pourquoi cette capacité est essentielle.
+        <br><hr>
+        Ces facteurs comprennent la taille de votre réseau, l'accessibilité physique des appareils et la dispersion géographique de vos appareils. Indépendamment de leur nombre ou de leur emplacement, vous devrez vérifier ces appareils et mettre périodiquement à jour leurs capacités et leur intelligence au moyen de mises à jour du micrologiciel, ou télécharger des correctifs de sécurité pour vous assurer qu'ils sont à jour, sécurisés et conformes.
+      </div>
+    </div>
+  </div>
+</section>

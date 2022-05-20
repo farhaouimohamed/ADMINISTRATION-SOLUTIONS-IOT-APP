@@ -2,6 +2,7 @@ package fr.pfe.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -41,6 +42,13 @@ public class User implements Serializable{
 				joinColumns = @JoinColumn(name = "user_id"), 
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+	
+	@OneToMany
+	private List<Message> listMessagesEnvoyes;
+	
+	@OneToMany
+	private List<Message> listMessagesRecus;
+	
 	public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
 			@NotBlank @Size(max = 120) String password) {
 		super();
@@ -48,6 +56,7 @@ public class User implements Serializable{
 		this.email = email;
 		this.password = password;
 	}
+	
 	
 	
 

@@ -15,7 +15,16 @@ export class AdminService {
   getAllUsers(): Observable<any> {
     return this.http.get(API_URL + 'all');
   }
+  getUser(id:number): Observable<any>{
+    return this.http.get(API_URL + id);
+  }
   saveUser(user: User) {
     return this.http.post<User>(API_URL + 'add', user);
+  }
+  deleteUser(id: number): Observable<any>{
+    return this.http.delete(API_URL+'delete/'+id);
+  }
+  updateUser(id: number,value: any): Observable<Object>{
+    return this.http.post(API_URL+'update/'+id, value);
   }
 }

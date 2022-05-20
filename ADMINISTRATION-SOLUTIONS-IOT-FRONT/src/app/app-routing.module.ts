@@ -18,9 +18,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'user', component: BoardUserComponent },
   { path: 'mod', component: BoardServerComponent },
-  { path: 'admin', component: BoardAdminComponent },
-  { path: 'all', component: UserListComponent },
-  { path: 'add', component: UserFormComponent },
+  { path: 'admin', component: BoardAdminComponent},
+  { path: 'listusers', component: UserFormComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

@@ -1,0 +1,9 @@
+package fr.pfe.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import fr.pfe.entities.Role;
+
+public interface MessageRepository extends JpaRepository<Role, Long>{
+
+}
