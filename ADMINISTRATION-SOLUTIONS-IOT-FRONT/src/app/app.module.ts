@@ -20,6 +20,7 @@ import { ListServerAccountsComponent } from './board-admin/list-server-accounts/
 import {MatPaginatorModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListWebAccountsComponent } from './board-admin/list-web-accounts/list-web-accounts.component';
+import { DashComponent } from './board-admin/dash/dash.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ListWebAccountsComponent } from './board-admin/list-web-accounts/list-w
     BoardServerComponent,
     UserFormComponent,
     ListServerAccountsComponent,
-    ListWebAccountsComponent
+    ListWebAccountsComponent,
+    DashComponent
         
   ],
   imports: [
