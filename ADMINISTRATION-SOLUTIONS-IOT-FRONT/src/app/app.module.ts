@@ -13,10 +13,13 @@ import { BoardServerComponent } from './board-server/board-server.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
-import { UserListComponent } from './board-admin/user-list/user-list.component';
 import { UserFormComponent } from './board-admin/user-form/user-form.component';
 import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ListServerAccountsComponent } from './board-admin/list-server-accounts/list-server-accounts.component';
+import {MatPaginatorModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ListWebAccountsComponent } from './board-admin/list-web-accounts/list-web-accounts.component';
 
 
 @NgModule({
@@ -29,8 +32,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     BoardUserComponent,
     BoardAdminComponent,
     BoardServerComponent,
-    UserListComponent,
-    UserFormComponent
+    UserFormComponent,
+    ListServerAccountsComponent,
+    ListWebAccountsComponent
+        
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HttpClientModule,
     MultiSelectAllModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

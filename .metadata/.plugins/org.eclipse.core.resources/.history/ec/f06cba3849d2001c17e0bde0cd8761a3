@@ -1,5 +1,0 @@
-package fr.pfe.service;
-
-public class UserDetailsServiceImpl implements UserDetailsService{
-
-}

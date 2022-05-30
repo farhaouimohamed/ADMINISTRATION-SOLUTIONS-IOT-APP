@@ -1,9 +1,6 @@
 package fr.pfe.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -16,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "username"),
 		@UniqueConstraint(columnNames = "email")
@@ -26,6 +24,7 @@ public class User implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "USER_ID")
 	private Long id;
 	@NotBlank
 	@Size(max = 20)
@@ -37,17 +36,9 @@ public class User implements Serializable{
 	@NotBlank
 	@Size(max = 120)
 	private String password;
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(	name = "user_roles", 
-				joinColumns = @JoinColumn(name = "user_id"), 
-				inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();
-	
-	@OneToMany
-	private List<Message> listMessagesEnvoyes;
-	
-	@OneToMany
-	private List<Message> listMessagesRecus;
+	@ManyToOne
+	@JoinColumn(name = "role_user")
+	private Role role;
 	
 	public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
 			@NotBlank @Size(max = 120) String password) {

@@ -1,9 +1,8 @@
 package fr.pfe.security.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,9 +32,9 @@ public class UserDetailsImpl implements UserDetails{
 	}
 	
 	public static UserDetailsImpl build(User user) {
-		List<GrantedAuthority> authorities = user.getRoles().stream()
-				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
-				.collect(Collectors.toList());
+		GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getName().name());
+		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		authorities.add(authority);
 		return new UserDetailsImpl(
 				user.getId(), 
 				user.getUsername(), 

@@ -1,5 +1,0 @@
-package fr.pfe.service;
-
-public interface UserDetailsService {
-    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
-}

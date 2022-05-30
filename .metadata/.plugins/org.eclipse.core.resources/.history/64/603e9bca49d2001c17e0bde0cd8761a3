@@ -1,5 +1,0 @@
-package fr.pfe.security.jwt;
-
-public class AuthTokenFilter {
-
-}

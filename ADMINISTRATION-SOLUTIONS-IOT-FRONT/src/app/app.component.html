@@ -20,16 +20,22 @@
         <a href="/home" class="nav-link" routerLink="home">Home </a>
       </li>
       <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        <a href="/admin" class="nav-link" routerLink="admin">Tableau de bord</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/listServerAccounts" class="nav-link" routerLink="listServerAccounts">Liste des comptes Serveur</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/listWebAccounts" class="nav-link" routerLink="listWebAccounts">Liste des comptes Web</a>
       </li>
       <li class="nav-item" *ngIf="showModeratorBoard">
         <a href="/mod" class="nav-link" routerLink="mod">Server Board</a>
       </li>
       <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User Board</a>
+        <a href="/user" class="nav-link" *ngIf="showModeratorBoard" routerLink="user">User Board</a>
       </li>
-      
     </ul>
+    
   </div>
     <!-- Left elements -->
 

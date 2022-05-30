@@ -1,5 +1,0 @@
-package fr.pfe.payload;
-
-public class LoginRequest {
-
-}
