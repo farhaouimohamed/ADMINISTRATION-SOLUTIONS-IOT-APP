@@ -78,6 +78,10 @@ public class WebClientAccount extends User implements Serializable{
 	@Column(name = "sim_card_fee_per_month")
 	private double simCardFeePerMonth;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_server")
+	private ServerClientAccount serverClientAccount;
+	
 	public WebClientAccount(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
 			@NotBlank @Size(max = 120) String password) {
 		super(username,email,password);

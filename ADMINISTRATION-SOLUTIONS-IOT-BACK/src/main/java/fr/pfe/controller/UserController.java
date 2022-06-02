@@ -94,7 +94,6 @@ public class UserController {
 	public ResponseEntity<?> addWebClientAccount(){
 		return ResponseEntity.ok(new MessageResponse("Web Client Account registered successfully!"));
 	}
-
 	
 	@DeleteMapping("/delete/{id}")
 	@PreAuthorize("hasRole('ADMIN')")

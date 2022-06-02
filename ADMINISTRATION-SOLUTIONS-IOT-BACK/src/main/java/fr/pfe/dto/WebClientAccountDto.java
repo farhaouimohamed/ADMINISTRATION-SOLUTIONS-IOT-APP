@@ -2,6 +2,8 @@ package fr.pfe.dto;
 
 import java.util.Date;
 
+import fr.pfe.entities.AdministratorAccount;
+import fr.pfe.entities.ServerClientAccount;
 import lombok.Data;
 
 @Data
@@ -25,6 +27,8 @@ public class WebClientAccountDto {
 	private double deviceFeePerMonth;
 	private double simCardFeePerMonth;
 	private RoleDto role;
+	private AdministratorAccount administratorCompte;
+	private ServerClientAccount serverClientAccount;
 	
 	public WebClientAccountDto() {
 		super();
@@ -32,7 +36,7 @@ public class WebClientAccountDto {
 	
 	public WebClientAccountDto(String rawPassword, Date date_creation, Date date_expiration, String code_pays, int pool,
 			int telephone, String area, String notificationSubquery, boolean mobileNotif, double deviceFeeByDay,
-			double accountFeeByMonth, double deviceFeePerMonth, double simCardFeePerMonth) {
+			double accountFeeByMonth, double deviceFeePerMonth, double simCardFeePerMonth, AdministratorAccount administratorCompte, ServerClientAccount serverClientAccount) {
 		super();
 		this.rawPassword = rawPassword;
 		this.date_creation = date_creation;
@@ -47,5 +51,7 @@ public class WebClientAccountDto {
 		this.accountFeeByMonth = accountFeeByMonth;
 		this.deviceFeePerMonth = deviceFeePerMonth;
 		this.simCardFeePerMonth = simCardFeePerMonth;
+		this.administratorCompte = administratorCompte;
+		this.serverClientAccount = serverClientAccount;
 	}
 }

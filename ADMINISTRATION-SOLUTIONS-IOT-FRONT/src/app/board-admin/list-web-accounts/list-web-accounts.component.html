@@ -25,12 +25,12 @@
                 <td><a href="mailto:{{ wca.email }}">{{ wca.email }}</a></td>
                 <td>{{ wca.role.name }}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-info" (click)="detailsWebClientAccount(sca.idCompteClientWeb)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Détails</button>
+                  <button type="button" class="btn btn-outline-info" (click)="detailsWebClientAccount(wca.idWebClientAccount)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Détails</button>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-outline-secondary" (click)="updateWebAccountForm(sca.idCompteClientWeb)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Editer</button>
+                  <button type="button" class="btn btn-outline-secondary" (click)="updateWebAccountForm(wca.idWebClientAccount)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Editer</button>
                 </td>
-                <td><button type="button" class="btn btn-outline-danger" (click)="deleteWebClientAccount(sca.idCompteClientWeb)">Supprimer</button></td>
+                <td><button type="button" class="btn btn-outline-danger" (click)="deleteWebClientAccount(wca.idWebClientAccount)">Supprimer</button></td>
               </tr>
             </tbody>
           </table>
@@ -52,7 +52,7 @@
               <div class="row mb-4" *ngIf="!isAddMode">
                 <div class="col">
                   <div class="form-outline">
-                    <input type="text" formControlName="idCompteClientWeb" placeholder="ID" class="form-control" readonly/>
+                    <input type="text" formControlName="idWebClientAccount" placeholder="ID" class="form-control" readonly/>
                   </div>
                 </div>
               </div>

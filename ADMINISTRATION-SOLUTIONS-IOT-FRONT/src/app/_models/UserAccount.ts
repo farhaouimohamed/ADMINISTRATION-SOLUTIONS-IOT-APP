@@ -59,6 +59,7 @@ export class WebClientAccount{
     email: string;
     expired: boolean;
     role: Role;
+    serverAccount: ServerClientAccount;
     constructor(){
         
     }

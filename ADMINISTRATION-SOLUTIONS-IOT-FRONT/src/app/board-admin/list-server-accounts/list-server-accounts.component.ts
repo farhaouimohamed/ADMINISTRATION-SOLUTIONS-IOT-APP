@@ -149,6 +149,7 @@ export class ListServerAccountsComponent implements OnInit {
     console.log(this.u);
   }
 
+  
   detailsServerClientAccount(id: number){
     console.log(id);
     this.isDetailMode=true;

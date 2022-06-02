@@ -44,6 +44,10 @@ public class WebClientAccountMapper {
 		webClientAccount.setDate_expiration(webClientAccountDto.getDate_expiration());
 		webClientAccount.setDeviceFeeByDay(webClientAccountDto.getDeviceFeeByDay());
 		webClientAccount.setDeviceFeePerMonth(webClientAccountDto.getDeviceFeePerMonth());
+		webClientAccount.setEmail(webClientAccountDto.getEmail());
+		webClientAccount.setUsername(webClientAccountDto.getUsername());
+		webClientAccount.setPassword(webClientAccountDto.getPassword());
+		webClientAccount.setCode_pays(webClientAccountDto.getCode_pays());
 		return webClientAccount;
 	}
 }

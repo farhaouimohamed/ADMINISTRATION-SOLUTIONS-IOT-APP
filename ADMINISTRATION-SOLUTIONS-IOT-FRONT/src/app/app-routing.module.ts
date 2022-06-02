@@ -6,6 +6,9 @@ import { ListServerAccountsComponent } from './board-admin/list-server-accounts/
 import { ListWebAccountsComponent } from './board-admin/list-web-accounts/list-web-accounts.component';
 import { UserFormComponent } from './board-admin/user-form/user-form.component';
 import { BoardServerComponent } from './board-server/board-server.component';
+import { DashboardComponent } from './board-server/dashboard/dashboard.component';
+import { EtatBoitiersComponent } from './board-server/etat-boitiers/etat-boitiers.component';
+import { ListWebAccountComponent } from './board-server/list-web-account/list-web-account.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -25,6 +28,10 @@ const routes: Routes = [
   { path: 'listWebAccounts', component: ListWebAccountsComponent},
   { path: 'adminDash', component: DashComponent},
   { path: 'listServerAccounts', component: ListServerAccountsComponent},
+  { path: 'server/webAccounts', component: ListWebAccountComponent},
+  { path: 'server/etatBoitiers', component: EtatBoitiersComponent},
+  { path: 'server/dashboard', component: DashboardComponent},
+  { path: 'user/dashboard', component: BoardUserComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

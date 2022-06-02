@@ -1,6 +1,7 @@
 package fr.pfe.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,8 +38,56 @@ public class Boitier implements Serializable{
 	private EtatBoitier etatBoitier;
 
 	@Column(name = "stream_id")
-	private Integer streamId;
+	private Long streamId;
 
 	@Column(name = "rawstream_id")
 	private Long rawstream_id;
+	
+	@Column(name = "matricule")
+	private String matricule;
+	
+	@Column(name = "etat")
+	private String Etat;
+	
+	@Column(name = "latitude")
+	private double latitude;
+	
+	@Column(name = "longitude")
+	private double longitude;
+	
+	@Column(name = "validite")
+	private String validite;
+	
+	@Column(name = "vitesse")
+	private double vitesse;
+	
+	@Column(name = "ignition")
+	private String Ignition;
+	
+	@Column(name = "gps")
+	private String gps;
+	
+	@Column(name = "gsm")
+	private String gsm;
+	
+	@Column(name = "date_gps")
+	private Date dateGps;
+	
+	@Column(name = "date_serveur")
+	private Date dateServeur;
+	
+	@Column(name = "id_trajet")
+	private Long idTrajet;
+	
+	@Column(name = "date_option")
+	private Date dateOption;
+	
+	@Column(name = "hlr")
+	private String hlr;
+	
+	@Column(name = "imei")
+	private String imei;
+	
+	@Column(name = "version")
+	private String version;
 }

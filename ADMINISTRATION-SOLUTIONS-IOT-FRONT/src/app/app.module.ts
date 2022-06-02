@@ -21,6 +21,10 @@ import {MatPaginatorModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListWebAccountsComponent } from './board-admin/list-web-accounts/list-web-accounts.component';
 import { DashComponent } from './board-admin/dash/dash.component';
+import { ListWebAccountComponent } from './board-server/list-web-account/list-web-account.component';
+import { EtatBoitiersComponent } from './board-server/etat-boitiers/etat-boitiers.component';
+import { DashboardComponent } from './board-server/dashboard/dashboard.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -36,7 +40,10 @@ import { DashComponent } from './board-admin/dash/dash.component';
     UserFormComponent,
     ListServerAccountsComponent,
     ListWebAccountsComponent,
-    DashComponent
+    DashComponent,
+    DashboardComponent,
+    ListWebAccountComponent,
+    EtatBoitiersComponent
         
   ],
   imports: [
@@ -48,8 +55,9 @@ import { DashComponent } from './board-admin/dash/dash.component';
     ReactiveFormsModule,
     NgSelectModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
-  ],
+    BrowserAnimationsModule,
+    ChartsModule,
+    ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WebClientAccount } from '../_models/UserAccount';
+import { TokenStorageService } from '../_services/token-storage.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -8,18 +10,40 @@ import { UserService } from '../_services/user.service';
 })
 export class BoardUserComponent implements OnInit {
 
-  content = '';
+  webClientAccount: WebClientAccount;
+  public doughnutChartLabels = ['Account Fee Per Day', 'Device Fee Per Day', 'Device Fee Per Month', 'Sim Card Fee Per Month'];
+  public doughnutChartData = [80, 83, 94, 87];
+  public doughnutChartType = 'doughnut';
 
-  constructor(private userService: UserService) { }
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels = ['Account Fee Per Day', 'Device Fee Per Day', 'Device Fee Per Month', 'Sim Card Fee Per Month'];  
+  public barChartType = 'bar';
+  public barChartLegend = true;
+  public barChartData = [
+    {data: [80, 83, 94, 87], label: 'Fees statistcs'},
+  ];
+
+  constructor(private userService: UserService, private token: TokenStorageService) { }
 
   ngOnInit() {
-    this.userService.getUserBoard().subscribe(
+    this.userService.getWebAccountById(this.token.getUser().id).subscribe(
       data => {
-        this.content = data;
+        this.webClientAccount = data;
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        this.webClientAccount = JSON.parse(err.error).message;
       }
     );
+
+  }
+  private getWebAccountStat(){
+    
+    this.doughnutChartData.push(this.webClientAccount.accountFeeByMonth);
+    this.doughnutChartData.push(this.webClientAccount.deviceFeeByDay);
+    this.doughnutChartData.push(this.webClientAccount.deviceFeePerMonth);
+    this.doughnutChartData.push(this.webClientAccount.simCardFeePerMonth);
   }
 }

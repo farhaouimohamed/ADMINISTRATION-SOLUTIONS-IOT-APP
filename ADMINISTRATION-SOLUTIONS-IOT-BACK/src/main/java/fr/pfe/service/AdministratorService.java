@@ -1,15 +1,12 @@
 package fr.pfe.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.spel.spi.Function;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.pfe.dto.ServerClientAccountDto;
@@ -17,7 +14,6 @@ import fr.pfe.dto.WebClientAccountDto;
 import fr.pfe.entities.Role;
 import fr.pfe.entities.ServerClientAccount;
 import fr.pfe.entities.WebClientAccount;
-import fr.pfe.enumeration.ERole;
 import fr.pfe.mapper.ServerClientAccountMapper;
 import fr.pfe.mapper.WebClientAccountMapper;
 import fr.pfe.repositories.RoleRepository;
@@ -29,6 +25,9 @@ public class AdministratorService {
 
 	@Autowired
 	private WebClientRepository webClientRepository;
+	
+	@Autowired
+	PasswordEncoder encoder;
 
 	@Autowired
 	private ServerClientRepository serverClientRepository;
@@ -47,8 +46,18 @@ public class AdministratorService {
 	    return WebClientAccountMapper.toWebClientAccountDto(o);
 	}
 
-	public void addWebClientAccount(WebClientAccountDto webClientAccountDto) {
-		webClientRepository.save(WebClientAccountMapper.toWebClientAccount(webClientAccountDto));
+	public WebClientAccountDto addWebClientAccount(WebClientAccountDto webClientAccountDto) {
+		Role role = roleRepository.findByName(webClientAccountDto.getRole().getName())
+				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+		WebClientAccount webClientAccount = WebClientAccountMapper.toWebClientAccount(webClientAccountDto);
+		webClientAccount.setRole(role);
+		webClientAccount.setPassword(encoder.encode(webClientAccountDto.getPassword()));
+		webClientAccount.setSereServerClientAccount(webClientAccountDto.getServerClientAccount());
+		webClientAccount.setAdministratorAccount(webClientAccountDto.getAdministratorCompte());
+		return WebClientAccountMapper.toWebClientAccountDto(webClientRepository.save(webClientAccount));
+	}
+	public void deleteWebClientAccount(Long id) {
+		webClientRepository.deleteById(id);
 	}
 
 	@Transactional
@@ -116,6 +125,7 @@ public class AdministratorService {
 				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 		ServerClientAccount serverClientAccount = ServerClientAccountMapper.toServerClientAccountBo(serverClientAccountDto);
 		serverClientAccount.setRole(role);
+		serverClientAccount.setPassword(encoder.encode(serverClientAccountDto.getPassword()));
 		serverClientAccount.setAdministratorCompte(serverClientAccountDto.getAdministratorCompte());
 		return ServerClientAccountMapper.toServerClientAccountDto(serverClientRepository.save(serverClientAccount));
 	}

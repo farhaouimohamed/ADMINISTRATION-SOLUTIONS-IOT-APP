@@ -48,4 +48,10 @@ export class AdminService {
   getAllWebAccounts(request): Observable<any>{
     return this.http.get(API_ADMIN_URL+'listeWebClientAccount?page='+request['page']+'&size='+request['size']);
   }
+  getWebAccount(id:number): Observable<any>{
+    return this.http.get(API_ADMIN_URL +"listeWebClientAccount/" + id);
+  }
+  updateWebAccount(id: number, value: any){
+    return this.http.put(API_ADMIN_URL+'listeWebClientAccount/'+id, value);
+  }
 }

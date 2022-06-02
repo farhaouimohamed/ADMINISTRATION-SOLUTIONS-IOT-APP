@@ -1,7 +1,5 @@
 package fr.pfe.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -64,23 +62,38 @@ public class AdministratorController {
 	}
 	
 	@GetMapping("/listeWebClientAccount")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVER')")
 	public Page<WebClientAccountDto> getAllWebClientAccount(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
         Pageable paging = PageRequest.of(page, size);
 		return administratorService.getAllWebClientAccount(paging);
 	}
 
 	@GetMapping("/listeWebClientAccount/{id}")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVER')")
 	public WebClientAccountDto getWebClientAccount(@PathVariable(name = "id") Long id) {
 		return administratorService.getWebClientAccountById(id);
 	}
 
 	@PostMapping("/listeWebClientAccount/{id}")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public WebClientAccountDto updateWebClientAccount(@PathVariable(name = "id") Long id,
 			@RequestBody WebClientAccountDto webClientAccountDto) {
 		return administratorService.updateWebClientAccount(id, webClientAccountDto);
+	}
+	@RequestMapping(path = "/listeWebClientAccount", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_SERVER') or hasRole('ROLE_SERVER')")
+	public WebClientAccountDto addWebClientAccount(@RequestBody WebClientAccountDto webClientAccountDto) {
+		return administratorService.addWebClientAccount(webClientAccountDto);
+	}
+	@DeleteMapping("/listeWebClientAccount/{id}")
+	@PreAuthorize("hasRole('ROLE_SERVER') or hasRole('ROLE_SERVER')")
+	public void deleteWebClientAccount(@PathVariable(name = "id") long id) {
+		administratorService.deleteServerClientAccount(id);
+	}
+	
+	@GetMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_WEB')")
+	public WebClientAccountDto getWebClientAccountById(@PathVariable Long id) {
+		return administratorService.getWebClientAccountById(id);
 	}
 
 }
