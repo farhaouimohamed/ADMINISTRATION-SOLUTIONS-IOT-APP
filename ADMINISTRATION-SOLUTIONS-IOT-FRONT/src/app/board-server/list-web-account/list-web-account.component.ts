@@ -19,6 +19,7 @@ export class ListWebAccountComponent implements OnInit {
   submitted = false;
   loading = true;
   errorMessage = '';
+  u: any;
 
   @ViewChild('model', { static: false}) model: ElementRef;
 
@@ -91,6 +92,7 @@ export class ListWebAccountComponent implements OnInit {
   private createWebAccount(){
     let webAccount = this.webAccountForm.value;
     let role: Role = new Role("ROLE_WEB");
+    webAccount.compteClientServer = this.token.getUser();
     webAccount.role = role;
     this.serverService.addWebAccount(webAccount)
         .pipe(first())
@@ -99,7 +101,7 @@ export class ListWebAccountComponent implements OnInit {
               this.loading = true;
               this.getWebAccounts({page:"0", size:"5"});
               this.changeisUpdate();
-              this.router.navigate(['server/webAccounts']);
+              this.router.navigate(['/server/webAccounts']);
           },
           error: error => {
               this.errorMessage = error.error.message;
@@ -108,17 +110,59 @@ export class ListWebAccountComponent implements OnInit {
       });
   }
   private updateWebAccount(){
-
+    let webAccount = this.webAccountForm.value;
+    console.log(webAccount);
+    let id = this.webAccountForm.value.idWebClientAccount;
+    webAccount.administratorCompte = this.token.getUser();
+    this.serverService.updateWebAccount(id,webAccount)
+        .pipe(first())
+        .subscribe({
+          next: () => {
+              this.loading = true;
+              this.getWebAccounts({page:"0", size:"5"});
+              this.changeisUpdate();
+              this.router.navigate(['/server/webAccounts']);
+          },
+          error: error => {
+              this.errorMessage = error.error.message;
+              this.loading = false;
+          }
+      });
   }
 
   detailsWebClientAccount(id: number){
-
+  
+    this.isDetailMode=true;
+    this.u = this.serverService.getWebAccount(id)
+                .pipe(first())
+                .subscribe(
+                  x => {
+                    console.log(x);
+                    this.webAccountForm.patchValue(x);
+                  }
+                );
   }
   updateWebAccountForm(id: number){
-
+    this.isAddMode=false;
+    this.u = this.serverService.getWebAccount(id)
+                .pipe(first())
+                .subscribe(
+                  x => {
+                    this.webAccountForm.patchValue(x);
+                  }
+                );
   }
   deleteWebClientAccount(id: number){
-
+    this.serverService.deleteWebAccount(id).subscribe(
+      data => {
+        this.getWebAccounts({page:"0", size:"5"});
+        this.changeisUpdate();
+        this.router.navigate(['/server/listWebAccounts']);
+      },
+      err => {
+        console.log(JSON.parse(err.error).message);
+      }
+    );
   }
 
   changeisUpdate(){

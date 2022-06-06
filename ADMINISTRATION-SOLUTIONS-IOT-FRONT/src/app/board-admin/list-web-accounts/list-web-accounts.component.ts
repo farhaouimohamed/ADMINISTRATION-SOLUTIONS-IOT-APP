@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PageEvent } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { Role } from 'src/app/_models/role';
@@ -93,7 +94,8 @@ export class ListWebAccountsComponent implements OnInit {
   private createWebAccount(){
     let webAccount = this.webAccountForm.value;
     let role: Role = new Role("ROLE_WEB");
-    webAccount.serverAccount = this.token.getUser();
+    webAccount.compteClientServer = null;
+    webAccount.administratorCompte = this.token.getUser();
     webAccount.role = role;
     this.serverService.addWebAccount(webAccount)
         .pipe(first())
@@ -107,6 +109,7 @@ export class ListWebAccountsComponent implements OnInit {
           error: error => {
               this.errorMessage = error.error.message;
               this.loading = false;
+              console.log(this.errorMessage);
           }
       });
   }
@@ -153,7 +156,16 @@ export class ListWebAccountsComponent implements OnInit {
   }
   
   deleteWebClientAccount(id: number){
-
+    this.adminService.deleteWebAccount(id).subscribe(
+      data => {
+        this.getWebAccounts({page:"0", size:"5"});
+        this.changeisUpdate();
+        this.router.navigate(['/listWebAccounts']);
+      },
+      err => {
+        console.log(JSON.parse(err.error).message);
+      }
+    );
   }
 
   changeisUpdate(){
@@ -167,6 +179,12 @@ export class ListWebAccountsComponent implements OnInit {
     if (this.model.nativeElement.contains(event.target)){
       this.isDetailMode = false;
     }
+  }
+  nextPage(event: PageEvent) {
+    const request = {};
+    request['page'] = event.pageIndex.toString();
+    request['size'] = event.pageSize.toString();
+    this.getWebAccounts(request);
   }
 
 }

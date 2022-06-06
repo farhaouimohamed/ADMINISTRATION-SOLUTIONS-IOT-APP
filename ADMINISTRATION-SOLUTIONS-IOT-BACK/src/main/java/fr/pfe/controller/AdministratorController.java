@@ -80,14 +80,14 @@ public class AdministratorController {
 		return administratorService.updateWebClientAccount(id, webClientAccountDto);
 	}
 	@RequestMapping(path = "/listeWebClientAccount", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasRole('ROLE_SERVER') or hasRole('ROLE_SERVER')")
+	@PreAuthorize("hasRole('ROLE_SERVER') or hasRole('ROLE_ADMIN')")
 	public WebClientAccountDto addWebClientAccount(@RequestBody WebClientAccountDto webClientAccountDto) {
 		return administratorService.addWebClientAccount(webClientAccountDto);
 	}
 	@DeleteMapping("/listeWebClientAccount/{id}")
-	@PreAuthorize("hasRole('ROLE_SERVER') or hasRole('ROLE_SERVER')")
+	@PreAuthorize("hasRole('ROLE_SERVER') or hasRole('ROLE_ADMIN')")
 	public void deleteWebClientAccount(@PathVariable(name = "id") long id) {
-		administratorService.deleteServerClientAccount(id);
+		administratorService.deleteWebClientAccount(id);
 	}
 	
 	@GetMapping("/{id}")

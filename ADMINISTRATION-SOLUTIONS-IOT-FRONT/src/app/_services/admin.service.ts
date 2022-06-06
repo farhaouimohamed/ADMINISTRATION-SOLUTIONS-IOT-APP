@@ -54,4 +54,7 @@ export class AdminService {
   updateWebAccount(id: number, value: any){
     return this.http.put(API_ADMIN_URL+'listeWebClientAccount/'+id, value);
   }
+  deleteWebAccount(id: number): Observable<any>{
+    return this.http.delete(API_ADMIN_URL +"listeWebClientAccount/" + id);
+  }
 }
